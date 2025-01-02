@@ -23,7 +23,9 @@ function App() {
 			</div>
 			<h1>Vite + React</h1>
 			<div className="card">
-				<button onClick={() => setCount((count) => count + 1)}>
+				<button
+					className="bg-primary  text-tint-300 font-primary"
+					onClick={() => setCount((count) => count + 1)}>
 					count is {count}
 				</button>
 				<p>
@@ -32,7 +34,7 @@ function App() {
 			</div>
 			<div>
 				<Button>Click me</Button>
-				<p className="text-brandColors-secondary text-20 font-regular bg-brandColors-grey-700 font-sans">
+				<p className="text-secondary text-20 font-regular bg-primary font-display font-primary">
 					Lorem ipsum dolor sit, amet consectetur adipisicing elit.
 					Cupiditate voluptates exercitationem quam veniam! Eligendi
 					consequuntur velit aperiam natus nam, eaque, officiis, omnis

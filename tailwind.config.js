@@ -20,14 +20,7 @@ module.exports = {
 					DEFAULT: "hsl(var(--popover))",
 					foreground: "hsl(var(--popover-foreground))",
 				},
-				primary: {
-					DEFAULT: "hsl(var(--primary))",
-					foreground: "hsl(var(--primary-foreground))",
-				},
-				secondary: {
-					DEFAULT: "hsl(var(--secondary))",
-					foreground: "hsl(var(--secondary-foreground))",
-				},
+
 				muted: {
 					DEFAULT: "hsl(var(--muted))",
 					foreground: "hsl(var(--muted-foreground))",
@@ -50,36 +43,36 @@ module.exports = {
 					4: "hsl(var(--chart-4))",
 					5: "hsl(var(--chart-5))",
 				},
-				brandColors: {
-					tint: {
-						50: "#E5F0FD",
-						100: "#BFD9FA",
-						200: "#80B4F4",
-						300: "#408EEF",
-					},
-					shade: {
-						100: "#0053BA",
-						200: "#003E8C",
-						300: "#002A5D",
-					},
-					grey: {
-						50: "#F3F3F4",
-						100: "#E2E2E5",
-						200: "#C5C5CB",
-						300: "#A9A8B1",
-						400: "#8C8A96",
-						500: "#6F6D7C",
-						600: "#525062",
-						700: "#3E3C4A",
-						800: "#292831",
-						900: "#151419",
-					},
-					primary: "#E7F0FF",
-					secondary: "#2075FF",
+
+				tint: {
+					50: "#E5F0FD",
+					100: "#BFD9FA",
+					200: "#80B4F4",
+					300: "#408EEF",
 				},
+				shade: {
+					100: "#0053BA",
+					200: "#003E8C",
+					300: "#002A5D",
+				},
+				grey: {
+					50: "#F3F3F4",
+					100: "#E2E2E5",
+					200: "#C5C5CB",
+					300: "#A9A8B1",
+					400: "#8C8A96",
+					500: "#6F6D7C",
+					600: "#525062",
+					700: "#3E3C4A",
+					800: "#292831",
+					900: "#151419",
+				},
+				secondary: "#E7F0FF",
+				primary: "#2075FF",
 			},
 			fontFamily: {
-				display: "Poppins sans-serif",
+				primary: "var(--primary-font-family)",
+				secondary: "var(--secondary-font-family)",
 			},
 		},
 		screens: {
