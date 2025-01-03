@@ -3,6 +3,7 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import { Button } from "./components/ui/button";
+import { StatusBadge } from "./components/pages/StatusBadge";
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -33,14 +34,17 @@ function App() {
 				</p>
 			</div>
 			<div>
-				<Button>Click me</Button>
-				<p className="text-secondary text-20 font-regular bg-primary font-display font-primary">
-					Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-					Cupiditate voluptates exercitationem quam veniam! Eligendi
-					consequuntur velit aperiam natus nam, eaque, officiis, omnis
-					maiores magni excepturi sint voluptates? Consequatur, eum
-					rem.
-				</p>
+				<Button variant={"destructive"}>Click me</Button>
+
+				<br />
+				<br />
+				<StatusBadge status="closed" />
+				<br />
+				<br />
+				<StatusBadge status="pending" />
+				<br />
+				<br />
+				<StatusBadge status="scheduled" />
 			</div>
 		</>
 	);
