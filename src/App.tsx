@@ -4,6 +4,9 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { Button } from "./components/ui/button";
 import { StatusBadge } from "./components/pages/StatusBadge";
+import { FlexibleButton, CircularIconButton } from "./components/pages/Buttons";
+import { CirclePlus } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -35,16 +38,65 @@ function App() {
 			</div>
 			<div>
 				<Button variant={"destructive"}>Click me</Button>
+				<br />
+				{/* Status cards */}
+				<div>
+					<StatusBadge status="closed" />
 
+					<StatusBadge status="pending" />
+
+					<StatusBadge status="scheduled" />
+				</div>
 				<br />
+
+				<div className="gap-5 w-full">
+					{/* Appointment Buttons  */}
+					<FlexibleButton
+						text="Appointment"
+						variant="primary"
+						icon={<CirclePlus strokeWidth={1.5} />}
+					/>
+					<br />
+					<br />
+					<FlexibleButton
+						text="Appointment"
+						variant="secondary"
+						icon={<CirclePlus strokeWidth={1.5} />}
+					/>
+				</div>
 				<br />
-				<StatusBadge status="closed" />
+				<div className="gap-5 w-full">
+					{/* button example */}
+					<FlexibleButton
+						text="Medicine"
+						variant="secondary"
+						icon={<CirclePlus strokeWidth={1.5} />}
+					/>
+					<br />
+					<br />
+
+					<FlexibleButton
+						text="Medicine"
+						variant="primary"
+						icon={<CirclePlus strokeWidth={1.5} />}
+					/>
+				</div>
 				<br />
-				<br />
-				<StatusBadge status="pending" />
-				<br />
-				<br />
-				<StatusBadge status="scheduled" />
+				<div className="gap-5 w-full">
+					{/* button example */}
+					<FlexibleButton text="Print Details" variant="primary" />
+					<br />
+					<br />
+					<FlexibleButton
+						text="Patient"
+						variant="secondary"
+						icon={<CirclePlus strokeWidth={1.5} />}
+					/>
+				</div>
+
+				<div>
+					<CircularIconButton icon={<Ellipsis />} />
+				</div>
 			</div>
 		</>
 	);
