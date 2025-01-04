@@ -56,7 +56,7 @@ module.exports = {
 					300: "#002A5D",
 				},
 				grey: {
-					50: "#F3F3F4",
+					50: "#F1F4F9",
 					100: "#E2E2E5",
 					200: "#C5C5CB",
 					300: "#A9A8B1",
@@ -74,6 +74,13 @@ module.exports = {
 				primary: "var(--primary-font-family)",
 				secondary: "var(--secondary-font-family)",
 			},
+			fontSize: {
+				20: "20px",
+				24: "24px",
+				28: "28px",
+				32: "32px",
+				36: "36px",
+			},
 		},
 		screens: {
 			sm: "640px",
@@ -81,19 +88,6 @@ module.exports = {
 			lg: "1024px",
 			xl: "1280px",
 			"2xl": "1536px",
-		},
-		fontSize: {
-			20: "20px",
-			24: "24px",
-			28: "28px",
-			32: "32px",
-			36: "36px",
-		},
-		fontWeight: {
-			regular: 400,
-			medium: 500,
-			semiBold: 600,
-			bold: 800,
 		},
 	},
 	plugins: [require("tailwindcss-animate")],
