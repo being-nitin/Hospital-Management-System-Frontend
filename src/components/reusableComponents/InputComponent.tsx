@@ -20,7 +20,7 @@ export const InputComponent = ({
 			{inputTitleLeft && (
 				<p
 					className={cn(
-						"flex justify-between my-2 font-medium text-grey-700"
+						"flex justify-between my-2 font-medium text-grey-700 text-sm opacity-80"
 					)}>
 					<span>{inputTitleLeft}</span>
 					<span>{inputTitleRight}</span>
@@ -31,7 +31,7 @@ export const InputComponent = ({
 				placeholder={placeholder}
 				type={type}
 				className={cn(
-					"bg-grey-50 font-medium py-5 w-full text-grey-500"
+					"bg-grey-50 font-medium py-5 w-full text-grey-500 placeholder:opacity-50 text-sm"
 				)}
 			/>
 		</div>

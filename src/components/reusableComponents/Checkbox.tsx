@@ -1,4 +1,5 @@
 import { Label } from "../../components/ui/label";
+import { cn } from "../../lib/utils";
 
 interface CheckboxProps {
 	label: string;
@@ -14,7 +15,7 @@ export const CheckboxWithLabel = ({
 }: CheckboxProps) => {
 	return (
 		<div>
-			<div className="flex items-center space-x-2">
+			<div className="flex items-center space-x-2 ">
 				<input
 					id={id}
 					type="checkbox"
@@ -22,7 +23,9 @@ export const CheckboxWithLabel = ({
 					checked={checked}
 					onChange={handleChange}
 				/>
-				<Label htmlFor={id}>{label}</Label>
+				<Label htmlFor={id} className={cn("opacity-60")}>
+					{label}
+				</Label>
 			</div>
 		</div>
 	);

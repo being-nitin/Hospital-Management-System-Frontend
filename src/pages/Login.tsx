@@ -3,11 +3,14 @@ import { MyCardHeader } from "../components/reusableComponents/CardComponent";
 import { InputComponent } from "../components/reusableComponents/InputComponent";
 import { Card, CardContent, CardFooter } from "../components/ui/card";
 import { CheckboxWithLabel } from "../components/reusableComponents/Checkbox";
+import { cn } from "../lib/utils";
+import { VectorBackground } from "../assets/icons/vectorBg";
 
 export const Login = () => {
 	return (
 		<div className="w-screen h-screen flex items-center justify-center bg-primary">
-			<Card>
+			<VectorBackground />
+			<Card className={cn("py-8 text-[#202224] z-50")}>
 				<MyCardHeader
 					cardTitle="Login to Account"
 					cardDescription="Please enter your email and password to continue"
@@ -15,7 +18,7 @@ export const Login = () => {
 				<CardContent>
 					<InputComponent
 						inputTitleLeft="Email address:"
-						placeholder="Email"
+						placeholder="esteban_schiller@gmail.com"
 						type="email"
 					/>
 					<InputComponent
@@ -29,11 +32,18 @@ export const Login = () => {
 						id="loginTerms"
 					/>
 				</CardContent>
-				<CardFooter>
-					<FlexibleButton variant="primary" text="Sign In" />
-					<p className="my-4">
-						Don’t have an account?{" "}
-						<a href="#" className="underline">
+				<CardFooter className={cn("mt-8")}>
+					<FlexibleButton
+						variant="primary"
+						text="Sign In"
+						className="opacity-90"
+					/>
+					<p className="my-4 text-sm  font-medium flex flex-col gap-1 sm:flex-row">
+						<span className="opacity-65">
+							Don’t have an account?
+						</span>
+
+						<a href="#" className="underline opacity-100">
 							Create Account
 						</a>
 					</p>

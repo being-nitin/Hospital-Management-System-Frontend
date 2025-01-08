@@ -12,9 +12,12 @@ export const MyCardHeader = ({
 	cardDescription,
 }: MyCardHeaderProps) => {
 	return (
-		<CardHeader>
+		<CardHeader className={cn("pt-4")}>
 			<CardTitle className={cn("text-xl")}>{cardTitle}</CardTitle>
-			<CardDescription>{cardDescription}</CardDescription>
+			<CardDescription
+				className={cn("opacity-80 text-[#202224] font-medium")}>
+				{cardDescription}
+			</CardDescription>
 		</CardHeader>
 	);
 };

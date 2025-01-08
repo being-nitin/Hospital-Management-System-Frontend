@@ -7,6 +7,7 @@ interface FlexibleButtonProps {
 	variant: "primary" | "secondary"; //variant of the button, determines its styling.
 	icon?: ReactElement; //optional icon to display inside the button.
 	onClick?: () => void; //optional onClick handler for button actions.
+	className?: string;
 }
 
 // styling classes for different button variants and default styles.
@@ -21,11 +22,13 @@ export const FlexibleButton = ({
 	text,
 	variant,
 	icon,
+	className,
 }: FlexibleButtonProps) => {
 	return (
 		<Button
 			className={cn(
 				styleObj.default,
+				className,
 				variant === "primary" ? styleObj.primary : styleObj.secondary
 			)}>
 			{icon ? icon : null}
