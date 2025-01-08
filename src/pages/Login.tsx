@@ -10,7 +10,10 @@ export const Login = () => {
 	return (
 		<div className="w-screen h-screen flex items-center justify-center bg-primary">
 			<VectorBackground />
-			<Card className={cn("py-8 text-[#202224] z-50")}>
+			<Card
+				className={cn(
+					"w-10/12 text-sm sm:w-96 md:w-[35rem] sm:text-lg py-10 md:px-14 m-4 text-[#202224] z-50"
+				)}>
 				<MyCardHeader
 					cardTitle="Login to Account"
 					cardDescription="Please enter your email and password to continue"
@@ -36,7 +39,7 @@ export const Login = () => {
 					<FlexibleButton
 						variant="primary"
 						text="Sign In"
-						className="opacity-90"
+						className="opacity-90 w-10/12"
 					/>
 					<p className="my-4 text-sm  font-medium flex flex-col gap-1 sm:flex-row">
 						<span className="opacity-65">

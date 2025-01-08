@@ -31,7 +31,7 @@ export const InputComponent = ({
 				placeholder={placeholder}
 				type={type}
 				className={cn(
-					"bg-grey-50 font-medium py-5 w-full text-grey-500 placeholder:opacity-50 text-sm"
+					"bg-grey-50 font-medium py-5 w-full text-grey-500 placeholder:opacity-50 text-sm my-4"
 				)}
 			/>
 		</div>

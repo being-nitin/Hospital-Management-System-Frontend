@@ -15,7 +15,7 @@ export const MyCardHeader = ({
 		<CardHeader className={cn("pt-4")}>
 			<CardTitle className={cn("text-xl")}>{cardTitle}</CardTitle>
 			<CardDescription
-				className={cn("opacity-80 text-[#202224] font-medium")}>
+				className={cn("opacity-80 text-[#202224] pt-4 font-medium")}>
 				{cardDescription}
 			</CardDescription>
 		</CardHeader>
