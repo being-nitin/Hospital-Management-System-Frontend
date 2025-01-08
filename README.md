@@ -121,3 +121,29 @@ A component to render a header section for a card with a title and description.
 	cardDescription="This is a description for the card."
 />
 ```
+
+## 6. **CheckboxWithLabel**
+
+### Description
+
+A reusable component that renders a checkbox with an associated label.
+
+### Props
+
+| Prop Name      | Type                                                   | Required | Description                                          |
+| -------------- | ------------------------------------------------------ | -------- | ---------------------------------------------------- |
+| `label`        | `string`                                               | Yes      | The title text for the card header.                  |
+| `id`           | `string`                                               | Yes      | The description text for the card header.            |
+| `checked`      | `string`                                               | No       | Controls whether the checkbox is checked.            |
+| `handleChange` | `(event: React.ChangeEvent<HTMLInputElement>) => void` | No       | Callback triggered when the checkbox value changes.. |
+
+### Example Usage
+
+```tsx
+<CheckboxWithLabel
+	label="Accept terms and conditions"
+	id="terms"
+	checked={true}
+	handleChange={(e) => console.log(e.target.checked)}
+/>
+```
