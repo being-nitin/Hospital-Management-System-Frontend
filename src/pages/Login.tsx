@@ -2,6 +2,7 @@ import { FlexibleButton } from "../components/reusableComponents/Buttons";
 import { MyCardHeader } from "../components/reusableComponents/CardComponent";
 import { InputComponent } from "../components/reusableComponents/InputComponent";
 import { Card, CardContent, CardFooter } from "../components/ui/card";
+import { CheckboxWithLabel } from "../components/reusableComponents/Checkbox";
 
 export const Login = () => {
 	return (
@@ -22,6 +23,10 @@ export const Login = () => {
 						inputTitleRight="Forget Pasword?"
 						placeholder="Password"
 						type="password"
+					/>
+					<CheckboxWithLabel
+						label="Remember Password"
+						id="loginTerms"
 					/>
 				</CardContent>
 				<CardFooter>
