@@ -11,98 +11,108 @@ import {
 import { CirclePlus } from "lucide-react";
 import { Ellipsis } from "lucide-react";
 import { Login } from "./pages/Login";
+import { AppSidebar } from "./components/reusableComponents/SidebarComponents";
+import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
+import Layout from "./pages/AppLayout";
 
-function App() {
+function App({ children }: { children: React.ReactNode }) {
 	const [count, setCount] = useState(0);
 
 	return (
 		<>
-			<Login />
-			<div>
-				<a href="https://vite.dev" target="_blank">
-					<img src={viteLogo} className="logo" alt="Vite logo" />
-				</a>
-				<a href="https://react.dev" target="_blank">
-					<img
-						src={reactLogo}
-						className="logo react"
-						alt="React logo"
-					/>
-				</a>
-			</div>
-			<h1>Vite + React</h1>
-			<div className="card">
-				<button
-					className="bg-primary  text-tint-300 font-primary"
-					onClick={() => setCount((count) => count + 1)}>
-					count is {count}
-				</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<div>
-				<Button variant={"destructive"}>Click me</Button>
-				<br />
-				{/* Status cards */}
+			{/* <Login /> */}
+			<Layout>
+				<p>Hello EveryOne</p>
+
 				<div>
-					<StatusBadge status="closed" />
-
-					<StatusBadge status="pending" />
-
-					<StatusBadge status="scheduled" />
+					<a href="https://vite.dev" target="_blank">
+						<img src={viteLogo} className="logo" alt="Vite logo" />
+					</a>
+					<a href="https://react.dev" target="_blank">
+						<img
+							src={reactLogo}
+							className="logo react"
+							alt="React logo"
+						/>
+					</a>
 				</div>
-				<br />
-				<div className="gap-5 w-32">
-					{/* Appointment Buttons  */}
-					<FlexibleButton
-						text="Appointment"
-						variant="primary"
-						icon={<CirclePlus strokeWidth={1.5} />}
-					/>
-					<br />
-					<br />
-					<FlexibleButton
-						text="Appointment"
-						variant="secondary"
-						icon={<CirclePlus strokeWidth={1.5} />}
-					/>
+				<h1>Vite + React</h1>
+				<div className="card">
+					<button
+						className="bg-primary  text-tint-300 font-primary"
+						onClick={() => setCount((count) => count + 1)}>
+						count is {count}
+					</button>
+					<p>
+						Edit <code>src/App.tsx</code> and save to test HMR
+					</p>
 				</div>
-				<br />
-				<div className="gap-5 w-32">
-					{/* button example */}
-					<FlexibleButton
-						text="Medicine"
-						variant="secondary"
-						icon={<CirclePlus strokeWidth={1.5} />}
-					/>
-					<br />
-					<br />
-
-					<FlexibleButton
-						text="Medicine"
-						variant="primary"
-						icon={<CirclePlus strokeWidth={1.5} />}
-					/>
-				</div>
-				<br />
-				<div className="gap-5 w-32">
-					{/* button example */}
-					<FlexibleButton text="Print Details" variant="primary" />
-					<br />
-					<br />
-					<FlexibleButton
-						text="Patient"
-						variant="secondary"
-						icon={<CirclePlus strokeWidth={1.5} />}
-					/>
-				</div>
-				<br />
-				<br />
 				<div>
-					<CircularIconButton icon={<Ellipsis />} />
+					<Button variant={"destructive"}>Click me</Button>
+					<br />
+					{/* Status cards */}
+					<div>
+						<StatusBadge status="closed" />
+
+						<StatusBadge status="pending" />
+
+						<StatusBadge status="scheduled" />
+					</div>
+					<br />
+					<div className="gap-5 w-32">
+						{/* Appointment Buttons  */}
+						<FlexibleButton
+							text="Appointment"
+							variant="primary"
+							icon={<CirclePlus strokeWidth={1.5} />}
+						/>
+						<br />
+						<br />
+						<FlexibleButton
+							text="Appointment"
+							variant="secondary"
+							icon={<CirclePlus strokeWidth={1.5} />}
+						/>
+					</div>
+					<br />
+					<div className="gap-5 w-32">
+						{/* button example */}
+						<FlexibleButton
+							text="Medicine"
+							variant="secondary"
+							icon={<CirclePlus strokeWidth={1.5} />}
+						/>
+						<br />
+						<br />
+
+						<FlexibleButton
+							text="Medicine"
+							variant="primary"
+							icon={<CirclePlus strokeWidth={1.5} />}
+						/>
+					</div>
+					<br />
+					<div className="gap-5 w-32">
+						{/* button example */}
+						<FlexibleButton
+							text="Print Details"
+							variant="primary"
+						/>
+						<br />
+						<br />
+						<FlexibleButton
+							text="Patient"
+							variant="secondary"
+							icon={<CirclePlus strokeWidth={1.5} />}
+						/>
+					</div>
+					<br />
+					<br />
+					<div>
+						<CircularIconButton icon={<Ellipsis />} />
+					</div>
 				</div>
-			</div>
+			</Layout>
 		</>
 	);
 }

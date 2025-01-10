@@ -14,7 +14,7 @@ interface FlexibleButtonProps {
 const styleObj = {
 	primary: "bg-primary text-white",
 	secondary: "border-primary bg-secondary text-primary hover:bg-secondary",
-	default: "text-white rounded-md py-5",
+	default: "text-white rounded-md py-5 flex justify-center items-center",
 };
 
 // FlexibleButton component for rendering customizable buttons with optional icons.
@@ -31,8 +31,8 @@ export const FlexibleButton = ({
 				variant === "primary" ? styleObj.primary : styleObj.secondary,
 				className
 			)}>
-			{icon ? icon : null}
-			{text}
+			{icon && <span>{icon}</span>}
+			<span>{text}</span>
 		</Button>
 	);
 };
