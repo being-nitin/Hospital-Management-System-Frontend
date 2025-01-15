@@ -230,3 +230,20 @@ interface MenuItem {
 	]}
 />
 ```
+
+## 8. **SubMenuItem**
+
+The SubMenuItem component is used to render a single menu item with an icon and a label. It is designed for use in dropdowns or navigation menus.
+
+### Props
+
+| Prop Name   | Type           | Required | Description                                 |
+| ----------- | -------------- | -------- | ------------------------------------------- |
+| `menuIcon`  | `ReactElement` | Yes      | The icon to display next to the menu label. |
+| `menuLabel` | `string`       | Yes      | The text label for the menu item.           |
+
+### Example Usage
+
+```tsx
+<SubMenuItem menuIcon={<ManageAccountIcon />} menuLabel="Manage Account" />
+```
