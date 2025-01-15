@@ -11,11 +11,9 @@ import {
 import { CirclePlus } from "lucide-react";
 import { Ellipsis } from "lucide-react";
 import { Login } from "./pages/Login";
-import { AppSidebar } from "./components/reusableComponents/SidebarComponents";
-import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
 import Layout from "./pages/AppLayout";
 
-function App({ children }: { children: React.ReactNode }) {
+function App() {
 	const [count, setCount] = useState(0);
 
 	return (
