@@ -38,7 +38,7 @@ function SubMenuItem({ menuIcon, menuLabel }: SubMenuItemProps) {
 function CardOnHover() {
 	return (
 		<HoverCard>
-			<HoverCardTrigger className="hover:underline hover:text-black hover:cursor-pointer flex items-center text-[#161E54]">
+			<HoverCardTrigger className="hover:underline hover:text-black hover:cursor-pointer flex items-center text-[#161E54] text-sm">
 				Admin
 				<span className="text-[#737898]">
 					<ChevronDown />
@@ -76,25 +76,26 @@ export function Menubar() {
 		<div
 			className={cn(
 				"border-b fixed bg-sidebar top-0 z-40 md:left-[18rem] flex h-24 items-center justify-between ",
-				!open ? "w-full !left-0" : "w-10/12 "
+				!open ? "w-full !left-0" : "w-10/12 ",
+				isMobile ? "w-full !left-0" : ""
 			)}>
 			{/* Left section: Welcome message and sidebar toggle */}
-			<p className="text-3xl font-medium pl-4 w-96 text-left flex items-center gap-4">
+			<p className="text-sm md:text-xl font-medium pl-4 text-left flex items-center gap-4">
 				<SidebarTrigger variant="secondary" />
 				Welcome Back
 			</p>
 
 			{/*Middle section: Search Bar in the Header */}
-			<div className="relative">
+			<div className="relative hidden md:block md:w-1/4">
 				<Input
 					placeholder="Search"
-					className="min-w-96 px-4 py-3 placeholder:font-normal"
+					className="md:min-w-full md:max-w-96 px-4 py-2 placeholder:font-normal"
 				/>
 				<Search className="absolute right-0 top-0 m-2.5 h-4 w-4 text-muted-foreground" />
 			</div>
 
 			{/* Right section: Notifications, messages, and user profile */}
-			<div className="py-6 pr-12 gap-8 flex items-center">
+			<div className="py-6 md:pr-12 pr-3 gap-3 md:gap-6 sm:flex items-center hidden">
 				<BellIcon />
 				<MessageIcon />
 				<div className="gap-3 flex items-center">
