@@ -2,7 +2,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "../components/reusableComponents/SidebarComponents";
 import { Menubar } from "../components/reusableComponents/Menubar";
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function AppLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<SidebarProvider>
 			<Menubar />

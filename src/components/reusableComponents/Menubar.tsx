@@ -80,8 +80,13 @@ export function Menubar() {
 				isMobile ? "w-full !left-0" : ""
 			)}>
 			{/* Left section: Welcome message and sidebar toggle */}
-			<p className="text-sm md:text-xl font-medium pl-4 text-left flex items-center gap-4">
-				<SidebarTrigger variant="secondary" />
+			<p className="text-sm md:text-2xl font-medium pl-4 text-left flex items-center gap-2 md:w-2/5">
+				<SidebarTrigger
+					variant="secondary"
+					className={cn(
+						"bg-white hover:bg-white border-none shadow-none"
+					)}
+				/>
 				Welcome Back
 			</p>
 

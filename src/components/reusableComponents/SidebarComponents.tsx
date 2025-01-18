@@ -44,13 +44,13 @@ function AppSidebarFooter() {
 				<FlexibleButton
 					text="Contact Us"
 					variant="secondary"
-					className="rounded-xl w-full bg-white border-black text-grey-900 font-medium"
+					className="rounded-lg w-full bg-white border-[#DFE1E7] text-grey-900 font-medium"
 				/>
 			</div>
 			<FlexibleButton
 				text="Logout"
 				variant="primary"
-				className="rounded-xl w-full bg-[#FF2A26] hover:bg-red-600 border-none"
+				className="rounded-xl w-full bg-[#FF2A26] hover:bg-red-600 border-none mt-3"
 				icon={<LogoutIcon />}
 			/>
 		</div>
@@ -95,7 +95,7 @@ function AppSidebarGroupContent({
 }: GroupContentProps) {
 	return (
 		<SidebarGroup className="gap-1">
-			<SidebarGroupLabel className="text-sm w-full pl-4 py-1">
+			<SidebarGroupLabel className="text-sm w-full pl-4 py-1 text-[#83899F]">
 				{groupLabelHeading}
 			</SidebarGroupLabel>
 			<SidebarGroupContent>
@@ -119,12 +119,13 @@ export function AppSidebar() {
 	return (
 		<Sidebar>
 			{/* Sidebar Header */}
-			<SidebarHeader className={cn("pt-6 px-5 border-b pb-10 h-24")}>
+			<SidebarHeader
+				className={cn("px-5 border-b flex justify-center h-24")}>
 				<AppSidebarHeader />
 			</SidebarHeader>
 
 			{/* Sidebar Content */}
-			<SidebarContent className="px-5 pt-14">
+			<SidebarContent className="px-5 pt-10">
 				{/* Home Menu list */}
 				<AppSidebarGroupContent
 					groupLabelHeading="Home"

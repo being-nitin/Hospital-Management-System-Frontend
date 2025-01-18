@@ -10,16 +10,16 @@ import {
 } from "./components/reusableComponents/Buttons";
 import { CirclePlus } from "lucide-react";
 import { Ellipsis } from "lucide-react";
-import { Login } from "./pages/Login";
-import Layout from "./pages/AppLayout";
+import { Outlet } from "react-router-dom";
+import AppLayout from "./pages/AppLayout";
 
 function App() {
 	const [count, setCount] = useState(0);
 
 	return (
 		<>
-			{/* <Login /> */}
-			<Layout>
+			<AppLayout>
+				<Outlet />
 				<p>Hello EveryOne</p>
 
 				<div>
@@ -110,7 +110,7 @@ function App() {
 						<CircularIconButton icon={<Ellipsis />} />
 					</div>
 				</div>
-			</Layout>
+			</AppLayout>
 		</>
 	);
 }
