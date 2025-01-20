@@ -1,13 +1,13 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "../components/reusableComponents/SidebarComponents";
-export default function Layout({ children }: { children: React.ReactNode }) {
+import { Menubar } from "../components/reusableComponents/Menubar";
+
+export default function AppLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<SidebarProvider>
+			<Menubar />
 			<AppSidebar />
-			<main>
-				<SidebarTrigger />
-				{children}
-			</main>
+			<main className="mt-24 px-6 py-4">{children}</main>
 		</SidebarProvider>
 	);
 }

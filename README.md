@@ -1,149 +1,55 @@
-# Reusable Components Documentation
+# Hospital Management System Frontend
 
-This document provides an overview and usage instructions for the reusable components implemented in the codebase. Each component is designed for modularity, maintainability, and reusability.
+## 📌 Introduction
 
----
+This is a hospital management user interface for managing, monitoring and controlling the system in a Hospital. This application is developed using Node js API (backend), React(Frontend), Redux(state Management) && MongoDb(Database), which mainly focuses on basic operations in a hospital like adding new patient information, and updating new information, assigning the doctor for patient. It features a familiar and well thought-out, an attractive online user interface, combined with strong searching Insertion, data visualization reports and reporting capabilities.The code is free and open-source.
 
-## 1. **FlexibleButton**
+**Objectives Of The System**
 
-### Description
+Reduce the average time taken to register a patient by automating the current manual patient registration system
 
-A customizable button component with support for variants, icons, and text.
+Eliminate current manual template filled by the doctors to assist in the diagnosis processiby replacing it with a computerized format
 
-### Props
+Provide doctors with a streamlined view of medical reports in a digital format by linking the laboratory with the doctors’ computers
 
-| Prop Name | Type                       | Required | Description                             |
-| --------- | -------------------------- | -------- | --------------------------------------- |
-| `text`    | `string`                   | Yes      | The text to be displayed on the button. |
-| `variant` | `'primary' \| 'secondary'` | Yes      | Specifies the button style variant.     |
-| `icon`    | `ReactElement`             | No       | Optional icon to display in the button. |
-| `onClick` | `() => void`               | No       | Optional click event handler.           |
+Reduce the time spent by a patient at the pharmacy by linking the doctors’ computer with the pharmacy there by eliminating half of the usual process in dispensing medication
 
-### Example Usage
+Allow for statistical reports on facts such as number of new patients diagnosed, number of fatalities for given period within a short time frame.
 
-```tsx
-<FlexibleButton
-	text="Submit"
-	variant="primary"
-	icon={<Icon />}
-	onClick={() => alert("Button clicked")}
-/>
+Provide an alert facility to remind doctors of patients who are visiting the doctor on a follow up of the previous visit
+
+Create a system with a simple interface that needs limited keyboard input from users
+
+## 🛠️ Installation Steps
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/being-nitin/Hospital-Management-System-Frontend.git
 ```
 
----
+2. Change the working directory
 
-## 2. **CircularIconButton**
-
-### Description
-
-A button with a circular shape designed to display only an icon.
-
-### Props
-
-| Prop Name | Type           | Required | Description                            |
-| --------- | -------------- | -------- | -------------------------------------- |
-| `icon`    | `ReactElement` | Yes      | The icon to display inside the button. |
-
-### Example Usage
-
-```tsx
-<CircularIconButton icon={<Icon />} />
+```bash
+cd Hospital-Management-System-Frontend
 ```
 
----
+3. Install dependencies
 
-## 3. **InputComponent**
-
-### Description
-
-A styled input field with optional titles for the left and right sides of the label.
-
-### Props
-
-| Prop Name         | Type                    | Required | Description                                  |
-| ----------------- | ----------------------- | -------- | -------------------------------------------- |
-| `inputTitleLeft`  | `string`                | No       | Optional text for the left title label.      |
-| `inputTitleRight` | `string`                | No       | Optional text for the right title label.     |
-| `placeholder`     | `string`                | Yes      | Placeholder text for the input field.        |
-| `type`            | `'email' \| 'password'` | Yes      | The type of input field (email or password). |
-
-### Example Usage
-
-```tsx
-<InputComponent
-	inputTitleLeft="Email"
-	inputTitleRight="Required"
-	placeholder="Enter your email"
-	type="email"
-/>
+```bash
+npm install
 ```
 
----
+4. Run the app
 
-## 4. **StatusBadge**
-
-### Description
-
-A badge component that dynamically displays a status with corresponding styles.
-
-### Props
-
-| Prop Name | Type                                   | Required | Description                         |
-| --------- | -------------------------------------- | -------- | ----------------------------------- |
-| `status`  | `'closed' \| 'pending' \| 'scheduled'` | Yes      | The status to display on the badge. |
-
-### Example Usage
-
-```tsx
-<StatusBadge status="pending" />
+```bash
+npm run dev
 ```
 
----
+## 👨‍💻 Tech Stack Used
 
-## 5. **MyCardHeader**
-
-### Description
-
-A component to render a header section for a card with a title and description.
-
-### Props
-
-| Prop Name         | Type     | Required | Description                               |
-| ----------------- | -------- | -------- | ----------------------------------------- |
-| `cardTitle`       | `string` | Yes      | The title text for the card header.       |
-| `cardDescription` | `string` | Yes      | The description text for the card header. |
-
-### Example Usage
-
-```tsx
-<MyCardHeader
-	cardTitle="Card Title"
-	cardDescription="This is a description for the card."
-/>
-```
-
-## 6. **CheckboxWithLabel**
-
-### Description
-
-A reusable component that renders a checkbox with an associated label.
-
-### Props
-
-| Prop Name      | Type                                                   | Required | Description                                          |
-| -------------- | ------------------------------------------------------ | -------- | ---------------------------------------------------- |
-| `label`        | `string`                                               | Yes      | The title text for the card header.                  |
-| `id`           | `string`                                               | Yes      | The description text for the card header.            |
-| `checked`      | `string`                                               | No       | Controls whether the checkbox is checked.            |
-| `handleChange` | `(event: React.ChangeEvent<HTMLInputElement>) => void` | No       | Callback triggered when the checkbox value changes.. |
-
-### Example Usage
-
-```tsx
-<CheckboxWithLabel
-	label="Accept terms and conditions"
-	id="terms"
-	checked={true}
-	handleChange={(e) => console.log(e.target.checked)}
-/>
-```
+-   React
+-   TypeScript
+-   TailwindCSS
+-   vite
+-   shadcn/ui

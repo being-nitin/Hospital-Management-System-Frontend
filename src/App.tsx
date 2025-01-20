@@ -10,18 +10,16 @@ import {
 } from "./components/reusableComponents/Buttons";
 import { CirclePlus } from "lucide-react";
 import { Ellipsis } from "lucide-react";
-import { Login } from "./pages/Login";
-import { AppSidebar } from "./components/reusableComponents/SidebarComponents";
-import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar";
-import Layout from "./pages/AppLayout";
+import { Outlet } from "react-router-dom";
+import AppLayout from "./pages/AppLayout";
 
-function App({ children }: { children: React.ReactNode }) {
+function App() {
 	const [count, setCount] = useState(0);
 
 	return (
 		<>
-			{/* <Login /> */}
-			<Layout>
+			<AppLayout>
+				<Outlet />
 				<p>Hello EveryOne</p>
 
 				<div>
@@ -112,7 +110,7 @@ function App({ children }: { children: React.ReactNode }) {
 						<CircularIconButton icon={<Ellipsis />} />
 					</div>
 				</div>
-			</Layout>
+			</AppLayout>
 		</>
 	);
 }
