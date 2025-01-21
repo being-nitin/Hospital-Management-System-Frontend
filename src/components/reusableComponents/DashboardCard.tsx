@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 import { Card, CardHeader } from "../ui/card";
-import { cn } from "../../lib/utils";
-// import { PatientHeart } from "../../assets/icons/PatientHeart";
+import { cn } from "../../lib/utils"; // Utility function for conditional classNames.
 
+// Define the props interface for DashboardCard
 interface DashboardCardDataProps {
 	dashboardData: {
 		icon: ReactElement;
@@ -13,6 +13,7 @@ interface DashboardCardDataProps {
 	type: "patient" | "staff" | "appointments" | "expenses";
 }
 
+// Object containing variant-specific styles for different card types.
 const variantStyle = {
 	patient: "bg-[#DFFCFF] border-[#00BBFF]",
 	staff: "bg-[#FFE4FC] border-[#FF67EE]",
@@ -21,6 +22,7 @@ const variantStyle = {
 };
 
 export function DashboardCard({ dashboardData, type }: DashboardCardDataProps) {
+	// Destructure data from the dashboardData prop
 	const { icon, percent, title, totalCount } = dashboardData;
 	return (
 		<Card
