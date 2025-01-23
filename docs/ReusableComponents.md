@@ -247,3 +247,31 @@ The SubMenuItem component is used to render a single menu item with an icon and 
 ```tsx
 <SubMenuItem menuIcon={<ManageAccountIcon />} menuLabel="Manage Account" />
 ```
+
+## 9. **DashboardCard**
+
+The `DashboardCard` component is a reusable UI element designed to display key metrics on a dashboard. It includes a title, an icon, numerical data, and a percentage indicator, with styling variations based on the card type.
+
+### Props
+
+| Prop Name       | Type     | Required | Description                                                                                 |
+| --------------- | -------- | -------- | ------------------------------------------------------------------------------------------- |
+| `dashboardData` | `object` | Yes      | Contains the data to display in the card. See below for detailed structure.                 |
+| `type`          | `string` | Yes      | Specifies the type of card. Accepted values: `patient`, `staff`, `appointments`, `expenses` |
+
+`dashboardData` Structure
+
+```tsx
+dashboardData: {
+	icon: ReactElement;
+	title: string;
+	totalCount: number;
+	percent: number;
+}
+```
+
+### Example Usage
+
+```tsx
+<DashboardCard dashboardData={dashboardData} type="patient" />
+```
