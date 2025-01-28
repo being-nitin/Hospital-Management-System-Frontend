@@ -4,6 +4,9 @@ import { PatientHeart } from "../assets/icons/PatientHeart";
 import { StaffIcon } from "../assets/icons/StaffIcon";
 import { AppointmentIcon } from "../assets/icons/AppointmentsIcon";
 import { ExpenseIcon } from "../assets/icons/ExpenseIcon";
+import LineGraph from "../components/reusableComponents/LineChart";
+import PatientData from "../components/reusableComponents/PatientData";
+import UpcomingAppointments from "../components/reusableComponents/UpcomingAppointments";
 
 const data = [
 	{
@@ -27,7 +30,7 @@ const data = [
 	{
 		icon: ExpenseIcon(),
 		percent: 50,
-		title: "Appointments",
+		title: "Total Expense",
 		totalCount: 12000,
 	},
 ];
@@ -43,6 +46,15 @@ const Dashboard = () => {
 				<DashboardCard dashboardData={data[1]} type="staff" />
 				<DashboardCard dashboardData={data[2]} type="appointments" />
 				<DashboardCard dashboardData={data[3]} type="expenses" />
+			</div>
+			<div className="my-4 flex gap-4">
+				<div className="basis-2/3 gap-5 flex flex-col">
+					<LineGraph />
+					<PatientData />
+				</div>
+				<div className="basis-1/3">
+					<UpcomingAppointments />
+				</div>
 			</div>
 		</React.Fragment>
 	);

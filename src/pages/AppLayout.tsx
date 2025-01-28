@@ -8,7 +8,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 			<Menubar />
 			<div className="flex w-screen">
 				<AppSidebar />
-				<main className="flex-grow mt-24 px-6 py-3">{children}</main>
+				<main className="flex-grow mt-24 px-6 py-3 bg-[#F5F6FA]">
+					{children}
+				</main>
 			</div>
 		</SidebarProvider>
 	);
