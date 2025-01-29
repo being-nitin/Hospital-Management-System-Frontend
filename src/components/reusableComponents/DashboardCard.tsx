@@ -27,10 +27,10 @@ export function DashboardCard({ dashboardData, type }: DashboardCardDataProps) {
 	return (
 		<Card
 			className={cn(
-				"border text-[#0A1B39] p-6 flex flex-col gap-y-4 w-64 flex-1 shadow-md",
+				"border text-[#0A1B39] p-6 flex flex-col gap-y-4 w-60 flex-1 shadow-md",
 				variantStyle[type]
 			)}>
-			<CardHeader className="flex-row items-center justify-between p-0 py-2 gap-1">
+			<CardHeader className="flex-row items-center justify-between p-0 py-1 gap-1">
 				<span>{icon}</span>
 				<span
 					className={cn(

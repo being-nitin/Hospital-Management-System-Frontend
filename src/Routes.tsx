@@ -1,14 +1,24 @@
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { Login } from "./pages/Login";
+
 import App from "./App";
-import Dashboard from "./pages/Dashboard";
+const Dashboard = React.lazy(() => import("./pages/Dashboard"));
+
+import { Login } from "./pages/Login";
 
 const AppRoutes = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<App />}>
-					<Route index element={<Dashboard />} />
+					<Route
+						index
+						element={
+							<Suspense fallback="...loading">
+								<Dashboard />
+							</Suspense>
+						}
+					/>
 				</Route>
 
 				{/* Auth Routes */}
