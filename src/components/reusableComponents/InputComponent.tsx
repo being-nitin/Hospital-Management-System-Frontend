@@ -8,6 +8,7 @@ export const InputComponent = ({
 	inputTitleRight,
 	placeholder,
 	type,
+	className,
 }: InputProps) => {
 	return (
 		<div className={cn("my-5")}>
@@ -25,7 +26,8 @@ export const InputComponent = ({
 				placeholder={placeholder}
 				type={type}
 				className={cn(
-					"bg-grey-50 font-medium py-5 w-full text-grey-500 placeholder:opacity-50 text-sm my-4"
+					"bg-grey-50 font-medium py-5 w-full text-grey-500 placeholder:opacity-50 text-sm my-4",
+					className
 				)}
 			/>
 		</div>

@@ -7,7 +7,7 @@ import {
 	TableRow,
 } from "../ui/table";
 
-// Columns of the table
+// Component to render the table header
 export function MyTableHeader({ columns }: { columns: string[] }) {
 	return (
 		<TableHeader>
@@ -24,6 +24,7 @@ export function MyTableHeader({ columns }: { columns: string[] }) {
 	);
 }
 
+// Component to render the table body with dynamic rows and columns
 export function MyTableBody<T>({
 	rowsData,
 	columns,
@@ -48,6 +49,7 @@ export function MyTableBody<T>({
 	);
 }
 
+// Main Table Component that combines the Header and Body
 export function MyTable<T>({
 	tableColumns,
 	rowsData,

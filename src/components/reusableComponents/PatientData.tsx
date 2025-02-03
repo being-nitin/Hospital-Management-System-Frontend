@@ -19,7 +19,7 @@ const PatientTableHeader = () => {
 	return (
 		<TableHeader>
 			<TableRow>
-				<TableHead className="text-[#1E1E1E] px-0">
+				<TableHead className="text-[#1E1E1E] px-4">
 					Patient name
 				</TableHead>
 				<TableHead className="text-[#1E1E1E]">Date In</TableHead>
@@ -35,7 +35,7 @@ const PatientTableHeader = () => {
 const PatientDataRow = ({ patient }: { patient: PatientsDataProps }) => {
 	return (
 		<TableRow className="border-b-0">
-			<TableCell className="px-0 flex items-center flex-wrap">
+			<TableCell className="px-4 flex items-center flex-wrap">
 				<img className="w-8 h-8 bg-cyan-50 mr-2" alt="Patient" />
 				{patient.name}
 			</TableCell>

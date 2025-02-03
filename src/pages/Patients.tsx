@@ -20,8 +20,10 @@ import { patientList, patientTableColumns } from "../constants/patientslist";
 import { Patient } from "../types/Patient";
 import { Input } from "../components/ui/input";
 import Pagination from "../components/reusableComponents/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const PatientListPage = () => {
+	const navigate = useNavigate();
 	const columns: (keyof Patient)[] = [
 		"id",
 		"patient",
@@ -61,6 +63,7 @@ const PatientListPage = () => {
 						icon={<PlusCircleIcon />}
 						text="Patient"
 						variant="primary"
+						onClick={() => navigate("/add-patient")}
 						className="rounded-full"
 					/>
 				</div>
