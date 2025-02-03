@@ -7,7 +7,7 @@ import { PatientIcon } from "../assets/icons/PatientIcon";
 export const homeMenuItems = [
 	{
 		title: "Dashboard",
-		url: "#",
+		url: "/",
 		icon: DashboardIcon(),
 	},
 	{
@@ -24,6 +24,6 @@ export const homeMenuItems = [
 
 export const moduleMenuItems = [
 	{ title: "Appointments", url: "#", icon: ListUsersIcon() },
-	{ title: "Patient", url: "#", icon: PatientIcon() },
-	{ title: "Medicine", url: "#", icon: MedicineIcon() },
+	{ title: "Patient", url: "/patients", icon: PatientIcon() },
+	{ title: "Medicine", url: "/medicines", icon: MedicineIcon() },
 ];

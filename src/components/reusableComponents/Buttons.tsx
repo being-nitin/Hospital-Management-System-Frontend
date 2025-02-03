@@ -1,14 +1,7 @@
 import { Button } from "../ui/button";
 import { cn } from "../../lib/utils";
 import { ReactElement } from "react";
-
-interface FlexibleButtonProps {
-	text: string; //text to be displayed inside the button.
-	variant: "primary" | "secondary"; //variant of the button, determines its styling.
-	icon?: ReactElement; //optional icon to display inside the button.
-	onClick?: () => void; //optional onClick handler for button actions.
-	className?: string;
-}
+import { FlexibleButtonProps } from "../../types/buttonInterface";
 
 // styling classes for different button variants and default styles.
 const styleObj = {
@@ -23,6 +16,7 @@ export const FlexibleButton = ({
 	variant,
 	icon,
 	className,
+	onClick,
 }: FlexibleButtonProps) => {
 	return (
 		<Button
@@ -30,7 +24,8 @@ export const FlexibleButton = ({
 				styleObj.default,
 				variant === "primary" ? styleObj.primary : styleObj.secondary,
 				className
-			)}>
+			)}
+			onClick={onClick}>
 			{icon && <span>{icon}</span>}
 			<span>{text}</span>
 		</Button>

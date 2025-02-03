@@ -275,3 +275,53 @@ dashboardData: {
 ```tsx
 <DashboardCard dashboardData={dashboardData} type="patient" />
 ```
+
+## 10. **MyTable**
+
+The `MyTable` is reusable UI component to create Table. It Dynamically generates table headers and rows based on input data.
+
+### Props
+
+| Prop Name      | Type          | Required | Description                               |
+| -------------- | ------------- | -------- | ----------------------------------------- |
+| `tableColumns` | `string[]`    | Yes      | Array of column names.                    |
+| `rowsData`     | `T[]`         | Yes      | Array of row objects                      |
+| `columns`      | `(keyof T)[]` | Yes      | Array of keys defining displayed columns. |
+
+### Example Usage
+
+```tsx
+const tableColumns = ["Name", "Age", "Email"]; // Table headers
+const rowsData = [
+	{ name: "John Doe", age: 25, email: "john@example.com" },
+	{ name: "Jane Doe", age: 28, email: "jane@example.com" },
+];
+
+<MyTable
+	tableColumns={tableColumns}
+	rowsData={rowsData}
+	columns={["name", "age", "email"]}
+/>;
+```
+
+## 11. **Pagination**
+
+Provides previous and next page controls. Displays the current page and total pages. Includes a dropdown to select page size.
+
+### Props
+
+| Prop Name      | Type                        | Required | Description                          |
+| -------------- | --------------------------- | -------- | ------------------------------------ |
+| `currentPage`  | `number`                    | Yes      | The current active page.             |
+| `totalPages`   | `number`                    | Yes      | The total number of available pages. |
+| `onPageChange` | `(newPage: number) => void` | Yes      | Function to handle page changes.     |
+
+### Example Usage
+
+```tsx
+<Pagination
+	currentPage={currentPage}
+	totalPages={totalPages}
+	onPageChange={(newPage) => setCurrentPage(newPage)}
+/>
+```

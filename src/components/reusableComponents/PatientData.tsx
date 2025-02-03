@@ -8,12 +8,18 @@ import {
 	TableHeader,
 	TableRow,
 } from "../ui/table";
+import { PencilIcon } from "../../assets/icons/PencilIcon";
+import { TrashIcon } from "../../assets/icons/TrashIcon";
+import { cn } from "../../lib/utils";
+import { PatientsDataProps } from "../../types/patientDataInterrface";
+import { patientsData } from "../../constants/patientData";
 
+// Header Component
 const PatientTableHeader = () => {
 	return (
 		<TableHeader>
 			<TableRow>
-				<TableHead className="text-[#1E1E1E] px-0">
+				<TableHead className="text-[#1E1E1E] px-4">
 					Patient name
 				</TableHead>
 				<TableHead className="text-[#1E1E1E]">Date In</TableHead>
@@ -25,57 +31,46 @@ const PatientTableHeader = () => {
 	);
 };
 
-const patientsData = [
-	{
-		name: "Jenny Wilson",
-		dateIn: "Dec 18, 2024",
-		Symptoms: "Geriatrician",
-		status: "Confirmed",
-	},
-	{
-		name: "Jenny Wilson",
-		dateIn: "Dec 18, 2024",
-		Symptoms: "Geriatrician",
-		status: "Confirmed",
-	},
-];
-
-const PatientTableBody = () => {
+// Table Row Component
+const PatientDataRow = ({ patient }: { patient: PatientsDataProps }) => {
 	return (
-		<TableBody className="w-full">
-			<TableRow className="border-b-0">
-				<TableCell className="px-0 flex items-center flex-wrap">
-					<img className="w-8 h-8 bg-cyan-50 mr-2"></img>
-					Jenny Wilson
-				</TableCell>
-				<TableCell>Dec 18, 2024</TableCell>
-				<TableCell>Geriatrician</TableCell>
-				<TableCell>Confirmed</TableCell>
-				<TableCell>$250.00</TableCell>
-			</TableRow>
-			<TableRow className="border-b-0">
-				<TableCell className="px-0 flex items-center flex-wrap">
-					<img className="w-8 h-8 bg-cyan-50 mr-2"></img>
-					Jenny Wilson
-				</TableCell>
-				<TableCell>Dec 18, 2024</TableCell>
-				<TableCell>Geriatrician</TableCell>
-				<TableCell>Confirmed</TableCell>
-				<TableCell>$250.00</TableCell>
-			</TableRow>
-			<TableRow className="border-b-0">
-				<TableCell className="px-0 flex items-center flex-wrap">
-					<img className="w-8 h-8 bg-cyan-50 mr-2"></img>
-					Jenny Wilson
-				</TableCell>
-				<TableCell>Dec 18, 2024</TableCell>
-				<TableCell>Geriatrician</TableCell>
-				<TableCell>Confirmed</TableCell>
-				<TableCell>$250.00</TableCell>
-			</TableRow>
+		<TableRow className="border-b-0">
+			<TableCell className="px-4 flex items-center flex-wrap">
+				<img className="w-8 h-8 bg-cyan-50 mr-2" alt="Patient" />
+				{patient.name}
+			</TableCell>
+			<TableCell>{patient.dateIn}</TableCell>
+			<TableCell>{patient.symptoms}</TableCell>
+			<TableCell
+				className={cn(
+					patient.status === "Confirmed"
+						? "text-[#4CB269]"
+						: patient.status === "Incoming"
+						? "text-[#FF8E26]"
+						: "text-[#F62E2E]"
+				)}>
+				{patient.status}
+			</TableCell>
+			<TableCell className="flex gap-4">
+				<PencilIcon />
+				<TrashIcon />
+			</TableCell>
+		</TableRow>
+	);
+};
+
+// Table Body Component
+const PatientTableBody = ({ patients }: { patients: PatientsDataProps[] }) => {
+	return (
+		<TableBody className="w-full h-fit overflow-hidden">
+			{patients.map((patient, index) => (
+				<PatientDataRow key={index} patient={patient} />
+			))}
 		</TableBody>
 	);
 };
+
+// Main Table Component
 const PatientData = () => {
 	return (
 		<div className="px-3 border rounded-lg shadow-lg bg-white w-full">
@@ -87,9 +82,9 @@ const PatientData = () => {
 					View All <ChevronRight size={14} />
 				</p>
 			</CardHeader>
-			<Table className="">
+			<Table>
 				<PatientTableHeader />
-				<PatientTableBody />
+				<PatientTableBody patients={patientsData} />
 			</Table>
 		</div>
 	);
