@@ -8,6 +8,7 @@ const AddPatient = React.lazy(() => import("./pages/AddPatient"));
 
 import { Login } from "./pages/Login";
 import MedicineList from "./pages/Medicines";
+import AddMedicine from "./pages/AddMedicine";
 const AppRoutes = () => {
 	return (
 		<BrowserRouter>
@@ -42,6 +43,14 @@ const AppRoutes = () => {
 						element={
 							<Suspense fallback="...loading">
 								<MedicineList />
+							</Suspense>
+						}
+					/>
+					<Route
+						path="/add-medicine"
+						element={
+							<Suspense fallback="...loading">
+								<AddMedicine />
 							</Suspense>
 						}
 					/>

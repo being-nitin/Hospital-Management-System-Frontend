@@ -16,7 +16,6 @@ import {
 	Undo2,
 } from "lucide-react";
 import { MyTable } from "../components/reusableComponents/TableComponent";
-import { patientList } from "../constants/patientslist";
 import { Input } from "../components/ui/input";
 import {
 	Medicine,
@@ -25,8 +24,10 @@ import {
 	medicineTableColumns,
 } from "../constants/medicines";
 import Pagination from "../components/reusableComponents/Pagination";
+import { useNavigate } from "react-router-dom";
 
 const MedicineList = () => {
+	const navigate = useNavigate();
 	const columns: (keyof Medicine)[] = medicineDatakeys;
 	return (
 		<React.Fragment>
@@ -54,6 +55,7 @@ const MedicineList = () => {
 						text="Medicine"
 						variant="primary"
 						className="rounded-full"
+						onClick={() => navigate("/add-medicine")}
 					/>
 				</div>
 			</div>
