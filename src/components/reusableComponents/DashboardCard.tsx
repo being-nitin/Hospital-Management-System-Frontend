@@ -1,17 +1,6 @@
-import { ReactElement } from "react";
 import { Card, CardHeader } from "../ui/card";
 import { cn } from "../../lib/utils"; // Utility function for conditional classNames.
-
-// Define the props interface for DashboardCard
-interface DashboardCardDataProps {
-	dashboardData: {
-		icon: ReactElement;
-		title: string;
-		totalCount: number;
-		percent: number;
-	};
-	type: "patient" | "staff" | "appointments" | "expenses";
-}
+import { DashboardCardDataProps } from "../../types/cardInterface";
 
 // Object containing variant-specific styles for different card types.
 const variantStyle = {

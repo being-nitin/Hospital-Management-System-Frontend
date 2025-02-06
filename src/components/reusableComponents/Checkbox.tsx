@@ -1,12 +1,7 @@
 import { Label } from "../../components/ui/label";
 import { cn } from "../../lib/utils";
+import { CheckboxProps } from "../../types/checkboxInterface";
 
-interface CheckboxProps {
-	label: string;
-	id: string;
-	checked?: boolean;
-	handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
 export const CheckboxWithLabel = ({
 	label,
 	id,

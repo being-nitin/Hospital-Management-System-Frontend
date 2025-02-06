@@ -1,12 +1,6 @@
 import { cn } from "../../lib/utils";
+import { InputProps } from "../../types/inputInterface";
 import { Input } from "../ui/input";
-
-interface InputProps {
-	inputTitleLeft?: string; // Optional label text displayed on the left above
-	inputTitleRight?: string; //optional Label text displayed on the right above
-	placeholder: string; // Placeholder text for the input field.
-	type: "email" | "password" | "text"; // Input type, restricted to "email" or "password" or "text".
-}
 
 // InputComponent: A reusable component for rendering input fields with optional titles.
 export const InputComponent = ({
@@ -14,6 +8,7 @@ export const InputComponent = ({
 	inputTitleRight,
 	placeholder,
 	type,
+	className,
 }: InputProps) => {
 	return (
 		<div className={cn("my-5")}>
@@ -31,7 +26,8 @@ export const InputComponent = ({
 				placeholder={placeholder}
 				type={type}
 				className={cn(
-					"bg-grey-50 font-medium py-5 w-full text-grey-500 placeholder:opacity-50 text-sm my-4"
+					"bg-grey-50 font-medium py-5 w-full text-grey-500 placeholder:opacity-50 text-sm my-4",
+					className
 				)}
 			/>
 		</div>
