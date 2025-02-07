@@ -25,6 +25,11 @@ import {
 } from "../constants/medicines";
 import Pagination from "../components/reusableComponents/Pagination";
 import { useNavigate } from "react-router-dom";
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "../components/ui/hover-card";
 
 const MedicineList = () => {
 	const navigate = useNavigate();
@@ -50,6 +55,11 @@ const MedicineList = () => {
 					</BreadcrumbList>
 				</Breadcrumb>
 				<div className="flex gap-2">
+					<FlexibleButton
+						text="Print Details"
+						variant="primary"
+						className="rounded-full"
+					/>
 					<FlexibleButton
 						icon={<PlusCircleIcon />}
 						text="Medicine"
@@ -79,13 +89,43 @@ const MedicineList = () => {
 					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
 						Filter By
 					</span>
-					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
-						Bar Code
-						<ChevronDown />
-					</span>
-					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-4">
-						Vendor <ChevronDown />
-					</span>
+					<HoverCard>
+						<HoverCardTrigger className="text-black hover:text-black">
+							<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
+								Bar Code
+								<ChevronDown />
+							</span>
+						</HoverCardTrigger>
+						<HoverCardContent align="end">
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Bar Code
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Bar Code
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Bar Code
+							</p>
+						</HoverCardContent>
+					</HoverCard>
+					<HoverCard>
+						<HoverCardTrigger className="text-black hover:text-black">
+							<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-4">
+								Vendor <ChevronDown />
+							</span>
+						</HoverCardTrigger>
+						<HoverCardContent align="end">
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Pharma
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Pharma
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Pharma
+							</p>
+						</HoverCardContent>
+					</HoverCard>
 					<span className="py-2 pl-5 font-medium flex items-center justify-between gap-3 text-[#EA0234]">
 						<Undo2 /> Reset Filters
 					</span>

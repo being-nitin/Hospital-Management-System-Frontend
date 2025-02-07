@@ -16,23 +16,24 @@ import {
 	Undo2,
 } from "lucide-react";
 import { MyTable } from "../components/reusableComponents/TableComponent";
-import { patientList, patientTableColumns } from "../constants/patientslist";
-import { Patient } from "../types/Patient";
+import {
+	Patient,
+	patientDatakeys,
+	patientList,
+	patientTableColumns,
+} from "../constants/patientslist";
 import { Input } from "../components/ui/input";
 import Pagination from "../components/reusableComponents/Pagination";
 import { useNavigate } from "react-router-dom";
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "../components/ui/hover-card";
 
 const PatientListPage = () => {
 	const navigate = useNavigate();
-	const columns: (keyof Patient)[] = [
-		"id",
-		"patient",
-		"phone",
-		"doctor",
-		"regDate",
-		"gender",
-		"actions",
-	];
+	const columns: (keyof Patient)[] = patientDatakeys;
 	return (
 		<React.Fragment>
 			<div className="flex w-full justify-between">
@@ -88,13 +89,43 @@ const PatientListPage = () => {
 					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
 						Filter By
 					</span>
-					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
-						Reg. Date
-						<ChevronDown />
-					</span>
-					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-4">
-						Status <ChevronDown />
-					</span>
+					<HoverCard>
+						<HoverCardTrigger className="hover:cursor-pointer text-black hover:text-black">
+							<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
+								Reg. Date
+								<ChevronDown />
+							</span>
+						</HoverCardTrigger>
+						<HoverCardContent align="end">
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								18 Dec
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								18 Dec
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								18 Dec
+							</p>
+						</HoverCardContent>
+					</HoverCard>
+					<HoverCard>
+						<HoverCardTrigger className="hover:cursor-pointer text-black hover:text-black">
+							<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-4">
+								Status <ChevronDown />
+							</span>
+						</HoverCardTrigger>
+						<HoverCardContent align="end">
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Incoming
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Incoming
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Incoming
+							</p>
+						</HoverCardContent>
+					</HoverCard>
 					<span className="py-2 pl-5 font-medium flex items-center justify-between gap-3 text-[#EA0234]">
 						<Undo2 /> Reset Filters
 					</span>
