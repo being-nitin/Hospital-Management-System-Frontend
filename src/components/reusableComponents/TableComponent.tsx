@@ -6,6 +6,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "../ui/table";
+import CardOnHover from "./CardOnHover";
 
 // Component to render the table header
 export function MyTableHeader({ columns }: { columns: string[] }) {
@@ -43,6 +44,9 @@ export function MyTableBody<T>({
 							{String(row[colKey])}
 						</TableCell>
 					))}
+					<TableCell>
+						<CardOnHover />
+					</TableCell>
 				</TableRow>
 			))}
 		</TableBody>

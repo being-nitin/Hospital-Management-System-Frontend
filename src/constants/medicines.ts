@@ -9,7 +9,6 @@ export interface Medicine {
 	expiryDate: string;
 	cost: string;
 	vendor: string;
-	actions: string;
 }
 export const medicinesData = [
 	{
@@ -23,7 +22,6 @@ export const medicinesData = [
 		expiryDate: "patient",
 		cost: "patient",
 		vendor: "patient",
-		actions: "patient",
 	},
 	{
 		name: "patient",
@@ -36,7 +34,6 @@ export const medicinesData = [
 		expiryDate: "patient",
 		cost: "patient",
 		vendor: "patient",
-		actions: "patient",
 	},
 	{
 		name: "patient",
@@ -49,7 +46,6 @@ export const medicinesData = [
 		expiryDate: "patient",
 		cost: "patient",
 		vendor: "patient",
-		actions: "patient",
 	},
 	{
 		name: "patient",
@@ -62,7 +58,6 @@ export const medicinesData = [
 		expiryDate: "patient",
 		cost: "patient",
 		vendor: "patient",
-		actions: "patient",
 	},
 	{
 		name: "patient",
@@ -75,46 +70,6 @@ export const medicinesData = [
 		expiryDate: "patient",
 		cost: "patient",
 		vendor: "patient",
-		actions: "patient",
-	},
-	{
-		name: "patient",
-		genericName: "patient",
-		batchNo: "patient",
-		barCode: "patient",
-		quantity: "patient",
-		type: "patient",
-		mfdDate: "patient",
-		expiryDate: "patient",
-		cost: "patient",
-		vendor: "patient",
-		actions: "patient",
-	},
-	{
-		name: "patient",
-		genericName: "patient",
-		batchNo: "patient",
-		barCode: "patient",
-		quantity: "patient",
-		type: "patient",
-		mfdDate: "patient",
-		expiryDate: "patient",
-		cost: "patient",
-		vendor: "patient",
-		actions: "patient",
-	},
-	{
-		name: "patient",
-		genericName: "patient",
-		batchNo: "patient",
-		barCode: "patient",
-		quantity: "patient",
-		type: "patient",
-		mfdDate: "patient",
-		expiryDate: "patient",
-		cost: "patient",
-		vendor: "patient",
-		actions: "patient",
 	},
 ];
 
@@ -129,7 +84,6 @@ export const medicineDatakeys: (keyof Medicine)[] = [
 	"expiryDate",
 	"cost",
 	"vendor",
-	"actions",
 ];
 
 export const medicineTableColumns = [

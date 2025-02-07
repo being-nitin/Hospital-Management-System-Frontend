@@ -16,6 +16,7 @@ import { LogoutIcon } from "../../assets/icons/LogoutIcon";
 import { CustomerServiceIcon } from "../../assets/icons/CustomerServiceIcon";
 import { ReactElement } from "react";
 import { homeMenuItems, moduleMenuItems } from "../../constants/menuItems";
+import { useLocation } from "react-router-dom";
 
 // Component: Header of the sidebar
 function AppSidebarHeader() {
@@ -62,16 +63,23 @@ interface MenuItem {
 	title: string;
 	url: string;
 	icon: ReactElement;
+	isActive?: boolean;
 }
 
+function isActive(url: string, pathname: string) {
+	return url == pathname;
+}
 // Component: Renders a single menu item in the sidebar
-function AppSidebarMenuItem({ title, url, icon }: MenuItem) {
+function AppSidebarMenuItem({ title, url, icon, isActive }: MenuItem) {
 	return (
 		<SidebarMenuItem>
 			<SidebarMenuButton
 				asChild
 				className={cn(
-					"pl-4 py-3 font-semibold text-sm gap-y-0 text-[#0A1B39] "
+					"pl-4 py-3 font-semibold text-sm gap-y-0 ",
+					isActive
+						? "text-primary bg-secondary border border-primary hover:bg-secondary hover:text-primary"
+						: "text-[#0A1B39] border-0"
 				)}>
 				<a href={url}>
 					<span>{icon}</span>
@@ -93,6 +101,8 @@ function AppSidebarGroupContent({
 	groupLabelHeading,
 	menuList,
 }: GroupContentProps) {
+	const { pathname } = useLocation();
+
 	return (
 		<SidebarGroup className="gap-1">
 			<SidebarGroupLabel className="text-sm w-full pl-4 py-1 text-[#83899F]">
@@ -106,6 +116,7 @@ function AppSidebarGroupContent({
 							title={title}
 							icon={icon}
 							url={url}
+							isActive={isActive(url, pathname)}
 						/>
 					))}
 				</SidebarMenu>
