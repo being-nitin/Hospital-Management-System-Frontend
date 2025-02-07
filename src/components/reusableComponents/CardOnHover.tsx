@@ -20,7 +20,6 @@ export default function CardOnHover() {
 					text="Edit"
 					variant="secondary"
 					className="border-0 w-full justify-start"
-					iconColor="primary"
 					icon={<PencilIcon />}
 				/>
 				<FlexibleButton

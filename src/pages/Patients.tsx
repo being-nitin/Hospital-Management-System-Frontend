@@ -73,11 +73,11 @@ const PatientListPage = () => {
 			{/* Table of List of Patients */}
 			<div className="px-6 py-4 rounded-t-2xl bg-[#E7F0FF] border-b-0 border border-[#B6C1CAD1] mt-3 flex justify-between items-center">
 				{/* Search Field*/}
-				<div className="relative hidden md:block md:w-1/4 bg-white rounded-lg">
+				<div className="relative hidden md:block md:w-1/4 bg-white rounded-xl">
 					<Search className="absolute left-0 top-0 m-2.5 h-4 w-4 text-primary" />
 					<Input
 						placeholder="Search Patient..."
-						className="px-8 py-2 placeholder:text-primary text-primary"
+						className="px-14 py-2 placeholder:text-primary text-primary rounded-xl"
 					/>
 				</div>
 
