@@ -25,6 +25,11 @@ import {
 } from "../constants/medicines";
 import Pagination from "../components/reusableComponents/Pagination";
 import { useNavigate } from "react-router-dom";
+import {
+	HoverCard,
+	HoverCardContent,
+	HoverCardTrigger,
+} from "../components/ui/hover-card";
 
 const MedicineList = () => {
 	const navigate = useNavigate();
@@ -51,6 +56,11 @@ const MedicineList = () => {
 				</Breadcrumb>
 				<div className="flex gap-2">
 					<FlexibleButton
+						text="Print Details"
+						variant="primary"
+						className="rounded-full"
+					/>
+					<FlexibleButton
 						icon={<PlusCircleIcon />}
 						text="Medicine"
 						variant="primary"
@@ -63,11 +73,11 @@ const MedicineList = () => {
 			{/* Table of List of Medicines */}
 			<div className="px-6 py-4 rounded-t-2xl bg-[#E7F0FF] border-b-0 border border-[#B6C1CAD1] mt-3 flex justify-between items-center">
 				{/* Search Field*/}
-				<div className="relative hidden md:block md:w-1/4 bg-white rounded-lg">
-					<Search className="absolute left-0 top-0 m-2.5 h-4 w-4 text-primary" />
+				<div className="relative hidden md:block md:w-1/4 bg-white rounded-xl ">
+					<Search className="absolute left-0 top-0 m-2.5 h-4 w-4 text-primary space" />
 					<Input
 						placeholder="Search Medicines..."
-						className="px-8 py-2 placeholder:text-primary text-primary"
+						className="px-14 py-2 placeholder:text-primary text-primary rounded-xl"
 					/>
 				</div>
 
@@ -79,13 +89,43 @@ const MedicineList = () => {
 					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
 						Filter By
 					</span>
-					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
-						Bar Code
-						<ChevronDown />
-					</span>
-					<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-4">
-						Vendor <ChevronDown />
-					</span>
+					<HoverCard>
+						<HoverCardTrigger className="text-black hover:text-black">
+							<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-3">
+								Bar Code
+								<ChevronDown />
+							</span>
+						</HoverCardTrigger>
+						<HoverCardContent align="end">
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Bar Code
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Bar Code
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Bar Code
+							</p>
+						</HoverCardContent>
+					</HoverCard>
+					<HoverCard>
+						<HoverCardTrigger className="text-black hover:text-black">
+							<span className="border-r py-2 px-5 font-medium flex items-center justify-between gap-4">
+								Vendor <ChevronDown />
+							</span>
+						</HoverCardTrigger>
+						<HoverCardContent align="end">
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Pharma
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Pharma
+							</p>
+							<p className="bg-gray-100 p-1 m-1 rounded">
+								Pharma
+							</p>
+						</HoverCardContent>
+					</HoverCard>
 					<span className="py-2 pl-5 font-medium flex items-center justify-between gap-3 text-[#EA0234]">
 						<Undo2 /> Reset Filters
 					</span>
