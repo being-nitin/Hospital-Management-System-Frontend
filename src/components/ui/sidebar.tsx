@@ -23,7 +23,7 @@ const SIDEBAR_WIDTH = "18rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
-const HOVER_DELAY = 200; // Delay in hover 
+const HOVER_DELAY = 200; // Delay in ms for hover actions
 
 type SidebarContext = {
 	state: "expanded" | "collapsed";
