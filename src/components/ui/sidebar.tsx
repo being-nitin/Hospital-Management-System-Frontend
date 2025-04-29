@@ -23,6 +23,7 @@ const SIDEBAR_WIDTH = "18rem";
 const SIDEBAR_WIDTH_MOBILE = "18rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
+const HOVER_DELAY = 200; // Delay in ms for hover actions
 
 type SidebarContext = {
 	state: "expanded" | "collapsed";
@@ -32,6 +33,8 @@ type SidebarContext = {
 	setOpenMobile: (open: boolean) => void;
 	isMobile: boolean;
 	toggleSidebar: () => void;
+	hoverOpen: () => void;
+	hoverClose: () => void;
 };
 
 const SidebarContext = React.createContext<SidebarContext | null>(null);
@@ -67,6 +70,7 @@ const SidebarProvider = React.forwardRef<
 	) => {
 		const isMobile = useIsMobile();
 		const [openMobile, setOpenMobile] = React.useState(false);
+		const hoverTimeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
 		// This is the internal state of the sidebar.
 		// We use openProp and setOpenProp for control from outside the component.
@@ -94,6 +98,42 @@ const SidebarProvider = React.forwardRef<
 				? setOpenMobile((open) => !open)
 				: setOpen((open) => !open);
 		}, [isMobile, setOpen, setOpenMobile]);
+
+		// Helper functions for hover open/close with delay
+		const hoverOpen = React.useCallback(() => {
+			if (hoverTimeoutRef.current) {
+				clearTimeout(hoverTimeoutRef.current);
+				hoverTimeoutRef.current = null;
+			}
+			
+			if (!open && !isMobile) {
+				hoverTimeoutRef.current = setTimeout(() => {
+					setOpen(true);
+				}, HOVER_DELAY);
+			}
+		}, [open, setOpen, isMobile]);
+
+		const hoverClose = React.useCallback(() => {
+			if (hoverTimeoutRef.current) {
+				clearTimeout(hoverTimeoutRef.current);
+				hoverTimeoutRef.current = null;
+			}
+			
+			if (open && !isMobile) {
+				hoverTimeoutRef.current = setTimeout(() => {
+					setOpen(false);
+				}, HOVER_DELAY);
+			}
+		}, [open, setOpen, isMobile]);
+
+		// Clean up timeouts
+		React.useEffect(() => {
+			return () => {
+				if (hoverTimeoutRef.current) {
+					clearTimeout(hoverTimeoutRef.current);
+				}
+			};
+		}, []);
 
 		// Adds a keyboard shortcut to toggle the sidebar.
 		React.useEffect(() => {
@@ -124,6 +164,8 @@ const SidebarProvider = React.forwardRef<
 				openMobile,
 				setOpenMobile,
 				toggleSidebar,
+				hoverOpen,
+				hoverClose,
 			}),
 			[
 				state,
@@ -133,6 +175,8 @@ const SidebarProvider = React.forwardRef<
 				openMobile,
 				setOpenMobile,
 				toggleSidebar,
+				hoverOpen,
+				hoverClose,
 			]
 		);
 
@@ -181,7 +225,7 @@ const Sidebar = React.forwardRef<
 		},
 		ref
 	) => {
-		const { isMobile, state, openMobile, setOpenMobile } = useSidebar();
+		const { isMobile, state, openMobile, setOpenMobile, hoverOpen, hoverClose } = useSidebar();
 
 		if (collapsible === "none") {
 			return (
@@ -228,7 +272,9 @@ const Sidebar = React.forwardRef<
 				data-state={state}
 				data-collapsible={state === "collapsed" ? collapsible : ""}
 				data-variant={variant}
-				data-side={side}>
+				data-side={side}
+				onMouseEnter={hoverOpen}
+				onMouseLeave={hoverClose}>
 				{/* This is what handles the sidebar gap on desktop */}
 				<div
 					className={cn(
@@ -269,7 +315,7 @@ const SidebarTrigger = React.forwardRef<
 	React.ElementRef<typeof Button>,
 	React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
-	const { toggleSidebar } = useSidebar();
+	const { toggleSidebar, hoverOpen } = useSidebar();
 
 	return (
 		<Button
@@ -281,6 +327,7 @@ const SidebarTrigger = React.forwardRef<
 				onClick?.(event);
 				toggleSidebar();
 			}}
+			onMouseEnter={hoverOpen}
 			{...props}>
 			<PanelLeft />
 			<span className="sr-only">Toggle Sidebar</span>
@@ -293,7 +340,7 @@ const SidebarRail = React.forwardRef<
 	HTMLButtonElement,
 	React.ComponentProps<"button">
 >(({ className, ...props }, ref) => {
-	const { toggleSidebar } = useSidebar();
+	const { toggleSidebar, hoverOpen } = useSidebar();
 
 	return (
 		<button
@@ -302,6 +349,7 @@ const SidebarRail = React.forwardRef<
 			aria-label="Toggle Sidebar"
 			tabIndex={-1}
 			onClick={toggleSidebar}
+			onMouseEnter={hoverOpen}
 			title="Toggle Sidebar"
 			className={cn(
 				"absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex",
@@ -562,7 +610,7 @@ const SidebarMenuButton = React.forwardRef<
 		ref
 	) => {
 		const Comp = asChild ? Slot : "button";
-		const { isMobile, state } = useSidebar();
+		const { isMobile, state, hoverOpen } = useSidebar();
 
 		const button = (
 			<Comp
@@ -574,6 +622,7 @@ const SidebarMenuButton = React.forwardRef<
 					sidebarMenuButtonVariants({ variant, size }),
 					className
 				)}
+				onMouseEnter={hoverOpen}
 				{...props}
 			/>
 		);
@@ -611,6 +660,7 @@ const SidebarMenuAction = React.forwardRef<
 	}
 >(({ className, asChild = false, showOnHover = false, ...props }, ref) => {
 	const Comp = asChild ? Slot : "button";
+	const { hoverOpen } = useSidebar();
 
 	return (
 		<Comp
@@ -628,6 +678,7 @@ const SidebarMenuAction = React.forwardRef<
 					"group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 peer-data-[active=true]/menu-button:text-sidebar-accent-foreground md:opacity-0",
 				className
 			)}
+			onMouseEnter={hoverOpen}
 			{...props}
 		/>
 	);
@@ -727,6 +778,7 @@ const SidebarMenuSubButton = React.forwardRef<
 	}
 >(({ asChild = false, size = "md", isActive, className, ...props }, ref) => {
 	const Comp = asChild ? Slot : "a";
+	const { hoverOpen } = useSidebar();
 
 	return (
 		<Comp
