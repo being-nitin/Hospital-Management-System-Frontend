@@ -12,7 +12,7 @@ export const homeMenuItems = [
 	},
 	{
 		title: "Calender",
-		url: "#",
+		url: "/calendar",
 		icon: CalenderIcon(),
 	},
 	{
