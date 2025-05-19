@@ -1,68 +1,92 @@
 import React, { useState } from "react";
 import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameMonth, isSameDay, addMonths, subMonths, addWeeks, subWeeks, isTomorrow, isToday } from "date-fns";
-import { ChevronLeft, ChevronRight, Plus, X } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, X, Calendar as CalendarIcon, Clock, User, Users, MessageSquare, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 
-// Event type definition
+
 interface CalendarEvent {
   id: string;
-  title: string;
-  date: Date;
-  endDate: Date; // Make endDate required to ensure we have start and end times
-  color: string;
+  title: string;          
+  doctorName: string;     
+  date: Date;             
+  endDate: Date;          
+  slotDuration: string;   
+  remarks: string;        
+  color: string;          
 }
 
-// Sample events data
+// Sample events data 
 const sampleEvents: CalendarEvent[] = [
   {
     id: '1',
     title: 'Team Meeting',
+    doctorName: 'Dr. Smith',
     date: new Date(2024, 8, 10, 15, 0),
     endDate: new Date(2024, 8, 10, 16, 0),
+    slotDuration: '1 Hour',
+    remarks: 'Weekly review',
     color: 'bg-orange-500'
   },
   {
     id: '2',
     title: 'Project Review',
+    doctorName: 'Dr. Johnson',
     date: new Date(2024, 8, 17, 10, 0),
     endDate: new Date(2024, 8, 17, 11, 30),
+    slotDuration: '1.5 Hours',
+    remarks: 'Mid-term evaluation',
     color: 'bg-orange-500'
   },
   {
     id: '3',
     title: 'Client Call',
+    doctorName: 'Dr. Williams',
     date: new Date(2024, 8, 12, 14, 0),
     endDate: new Date(2024, 8, 12, 15, 0),
+    slotDuration: '1 Hour',
+    remarks: 'Follow-up check',
     color: 'bg-green-500'
   },
   {
     id: '4',
     title: 'Workshop',
+    doctorName: 'Dr. Brown',
     date: new Date(2024, 8, 28, 9, 0),
     endDate: new Date(2024, 8, 28, 17, 0),
+    slotDuration: '8 Hours',
+    remarks: 'Annual training',
     color: 'bg-green-500'
   },
-  // Added sample clinic appointments to match the design
+  
   {
     id: '5',
     title: 'Sit at clinic 1',
+    doctorName: 'Dr. Wilson',
     date: new Date(2024, 10, 1, 10, 0),
     endDate: new Date(2024, 10, 1, 11, 0),
+    slotDuration: '1 Hour',
+    remarks: 'Regular checkup',
     color: 'bg-blue-500'
   },
   {
     id: '6',
     title: 'Sit at clinic 2',
+    doctorName: 'Dr. Davis',
     date: new Date(2024, 10, 1, 10, 0),
     endDate: new Date(2024, 10, 1, 11, 0),
+    slotDuration: '1 Hour',
+    remarks: 'Consultation',
     color: 'bg-blue-500'
   },
   {
     id: '7',
     title: 'Sit at clinic 3',
+    doctorName: 'Dr. Miller',
     date: new Date(2024, 10, 1, 10, 0),
     endDate: new Date(2024, 10, 1, 11, 0),
+    slotDuration: '1 Hour',
+    remarks: 'First visit',
     color: 'bg-blue-500'
   }
 ];
@@ -76,20 +100,29 @@ const CalendarApp: React.FC = () => {
   const [showEventModal, setShowEventModal] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [newEvent, setNewEvent] = useState<{
-    title: string;
-    date: Date;
-    startTime: string;
-    endTime: string;
-    color: string;
-  }>({
-    title: "",
-    date: new Date(),
-    startTime: "10:00",
-    endTime: "11:00",
-    color: "bg-blue-500"
-  });
+  title: string;          
+  doctorName: string;     
+  date: Date;             
+  startTime: string;      
+  endTime: string;        
+  slotDuration: string;   
+  remarks: string;        
+  color: string;       
+}>({
+  title: "",
+  doctorName: "",
+  date: new Date(),
+  startTime: "10:00",
+  endTime: "11:00",
+  slotDuration: "",
+  remarks: "",
+  color: "bg-blue-500"
+});
 
-  // Get calendar days based on current view
+  // Available time slot options
+  const timeSlotOptions = ['5 Min', '10 Min', '15 Min', '30 Min', '45 Min', '1 Hour', '1.5 Hours', '2 Hours', '3 Hours', '4 Hours'];
+
+  //  calendar view
   const getDays = () => {
     if (view === 'month') {
       const monthStart = startOfMonth(currentDate);
@@ -154,16 +187,20 @@ const CalendarApp: React.FC = () => {
 
   // Handle opening the modal for a new event
   const openAddEventModal = () => {
-    setSelectedDate(currentDate);
-    setNewEvent({
-      title: "",
-      date: currentDate,
-      startTime: "10:00",
-      endTime: "11:00",
-      color: "bg-blue-500"
-    });
-    setShowEventModal(true);
-  };
+  setSelectedDate(currentDate);
+  setNewEvent({
+    title: "",
+    doctorName: "",
+    date: currentDate,
+    startTime: "10:00",
+    endTime: "11:00",
+    slotDuration: "30 Min",
+    remarks: "",
+    color: "bg-blue-500"
+  });
+  setShowEventModal(true);
+};
+
 
   // Handle day click to set the selected date
   const handleDayClick = (day: Date) => {
@@ -193,8 +230,11 @@ const CalendarApp: React.FC = () => {
     const newEventObject: CalendarEvent = {
       id: `${events.length + 1}`,
       title: newEvent.title || "New Event",
+      doctorName: newEvent.doctorName || "Not Specified",
       date: startDate,
       endDate: endDate,
+      slotDuration: newEvent.slotDuration || "Not Specified",
+      remarks: newEvent.remarks || "No remarks",
       color: newEvent.color
     };
     
@@ -222,42 +262,95 @@ const CalendarApp: React.FC = () => {
   return (
     <div className="flex w-full">
       {/* Calendar Sidebar */}
-      <div className="w-64 bg-gray-50 border-r p-4 h-screen overflow-y-auto">
+      <div className="w-72 bg-gray-50 border-r p-4 h-screen overflow-y-auto">
         <h2 className="text-xl font-semibold mb-4">Calendar</h2>
         
         {/* Today's Events */}
         <div className="mb-6">
-          <h3 className="text-lg font-medium mb-2">Today</h3>
-          {getTodayEvents().length > 0 ? (
-            getTodayEvents().map(event => (
-              <div key={event.id} className="bg-white p-3 rounded-md shadow-sm mb-2 border-l-4 border-blue-500">
-                <div className="font-medium">{event.title}</div>
-                <div className="text-sm text-gray-500">
-                  {formatEventTime(event)}
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500 text-sm">No events scheduled</p>
-          )}
+         <h3 className="text-lg font-medium mb-2">Today</h3>
+         {getTodayEvents().length > 0 ? (
+          getTodayEvents().map(event => (
+        <div
+          key={event.id}
+          className="bg-white p-3 rounded-md shadow-sm mb-3 border-l-4 border-blue-500"
+      >
+        <div className="font-medium text-base">{event.title}</div>
+
+        <div className="flex items-center mt-1 text-gray-600">
+          <User className="h-3 w-3 mr-1" />
+          <span className="text-xs">{event.doctorName}</span>
         </div>
+
+        <div className="flex items-center mt-1 text-gray-600">
+          <Clock className="h-3 w-3 mr-1" />
+          <span className="text-xs">
+            {formatEventTime(event).split(' - ')[0]}
+          </span>
+        </div>
+
+        <div className="flex items-center mt-1 text-gray-600">
+          <CalendarIcon className="h-3 w-3 mr-1" />
+          <span className="text-xs">{event.slotDuration}</span>
+        </div>
+
+        {event.remarks && (
+          <div className="flex items-start mt-1 text-gray-600">
+            <MessageSquare className="h-3 w-3 mr-1 mt-0.5" />
+            <span className="text-xs">{event.remarks}</span>
+          </div>
+        )}
+      </div>
+    ))
+  ) : (
+    <p className="text-gray-500 text-sm">No events scheduled</p>
+  )}
+ </div>
         
         {/* Tomorrow's Events */}
-        <div className="mb-6">
-          <h3 className="text-lg font-medium mb-2">Tomorrow</h3>
-          {getTomorrowEvents().length > 0 ? (
-            getTomorrowEvents().map(event => (
-              <div key={event.id} className="bg-white p-3 rounded-md shadow-sm mb-2 border-l-4 border-green-500">
-                <div className="font-medium">{event.title}</div>
-                <div className="text-sm text-gray-500">
-                  {formatEventTime(event)}
-                </div>
-              </div>
-            ))
-          ) : (
-            <p className="text-gray-500 text-sm">No events scheduled</p>
-          )}
+       <div className="mb-6">
+  <h3 className="text-lg font-medium mb-2">Tomorrow</h3>
+  {getTomorrowEvents().length > 0 ? (
+    getTomorrowEvents().map(event => (
+      <div
+        key={event.id}
+        className="bg-white p-3 rounded-md shadow-sm mb-3 border-l-4 border-green-500"
+      >
+        <div className="font-medium text-base">{event.title}</div>
+
+        <div className="flex items-center mt-1 text-gray-600">
+          <User className="h-3 w-3 mr-1" />
+          <span className="text-xs">{event.doctorName}</span>
         </div>
+
+        {/* Start Time */}
+        <div className="flex items-center mt-1 text-gray-600">
+          <Clock className="h-3 w-3 mr-1" />
+          <span className="text-xs">
+            {/* Ensure formatEventTime returns a valid value */}
+            {formatEventTime(event) ? formatEventTime(event).split(' - ')[0] : 'No time available'}
+          </span>
+        </div>
+
+        {/* Slot Duration (if available) */}
+        <div className="flex items-center mt-1 text-gray-600">
+          <CalendarIcon className="h-3 w-3 mr-1" />
+          <span className="text-xs">{event.slotDuration}</span>
+        </div>
+
+        {/* Remarks (if available) */}
+        {event.remarks && (
+          <div className="flex items-start mt-1 text-gray-600">
+            <MessageSquare className="h-3 w-3 mr-1 mt-0.5" />
+            <span className="text-xs">{event.remarks}</span>
+          </div>
+        )}
+      </div>
+    ))
+  ) : (
+    <p className="text-gray-500 text-sm">No events scheduled</p>
+  )}
+</div>
+
       </div>
       
       {/* Main Calendar Area */}
@@ -314,7 +407,7 @@ const CalendarApp: React.FC = () => {
               className="flex items-center px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
             >
               <Plus className="h-4 w-4 mr-1" />
-              Add Event
+              Add New Appointment
             </button>
           </div>
         </div>
@@ -380,13 +473,13 @@ const CalendarApp: React.FC = () => {
           <div className="day-view">
             <div className="grid grid-cols-1 border-b">
               <div 
-                className="p-2 text-center cursor-pointer"
+                className="p-2 text-left cursor-pointer"
                 onClick={() => handleDayClick(currentDate)}
               >
                 <div className="text-gray-500 text-sm">{format(currentDate, 'EEEE')}</div>
                 <div className={cn(
                   "text-sm font-medium mt-1",
-                  isSameDay(currentDate, new Date()) && "bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center mx-auto"
+                  isSameDay(currentDate, new Date()) && "bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center ml-0"
                 )}>
                   {format(currentDate, 'd')}
                 </div>
@@ -396,7 +489,7 @@ const CalendarApp: React.FC = () => {
             <div className="grid grid-cols-2 h-96 overflow-y-auto">
               <div className="time-labels border-r">
                 {timeSlots.map(hour => (
-                  <div key={hour} className="h-12 border-b text-xs text-gray-500 text-right pr-1">
+                  <div key={hour} className="h-12 border-b text-xs text-gray-500 text-left pr-1">
                     {hour % 12 === 0 ? '12' : hour % 12}:00 {hour >= 12 ? 'PM' : 'AM'}
                   </div>
                 ))}
@@ -410,7 +503,7 @@ const CalendarApp: React.FC = () => {
                 {/* Events */}
                 {events.filter(event => isSameDay(new Date(event.date), currentDate)).map(event => {
                   const eventHour = new Date(event.date).getHours();
-                  const eventPosition = (eventHour - 8) * 3; // 3rem per hour
+                  const eventPosition = (eventHour - 8) * 3; 
                   
                   return (
                     <div
@@ -447,7 +540,7 @@ const CalendarApp: React.FC = () => {
                   <div className="text-gray-500 text-sm">{format(day, 'EEE')}</div>
                   <div className={cn(
                     "text-sm font-medium mt-1",
-                    isSameDay(day, new Date()) && "bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center mx-auto"
+                    isSameDay(day, new Date()) && "bg-blue-500 text-white rounded-full h-6 w-6 flex items-center justify-center ml-0"
                   )}>
                     {format(day, 'd')}
                   </div>
@@ -500,98 +593,147 @@ const CalendarApp: React.FC = () => {
 
       {/* Add Event Modal */}
       {showEventModal && (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-gray-800 rounded-lg shadow-xl p-6 w-96 text-white">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-medium">Add New Event</h3>
-              <button onClick={() => setShowEventModal(false)} className="text-gray-700">
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-            
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-200 mb-1">Event Title</label>
-                <input
-                  type="text"
-                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter event title"
-                  value={newEvent.title}
-                  onChange={(e) => setNewEvent({...newEvent, title: e.target.value})}
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-200 mb-1">Date</label>
-                <input
-                  type="date"
-                  className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500"
-                  value={format(newEvent.date, 'yyyy-MM-dd')}
-                  onChange={(e) => {
-                    const date = new Date(e.target.value);
-                    setNewEvent({...newEvent, date});
-                  }}
-                />
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">Start Time</label>
-                  <input
-                    type="time"
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500"
-                    value={newEvent.startTime}
-                    onChange={(e) => setNewEvent({...newEvent, startTime: e.target.value})}
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-200 mb-1">End Time</label>
-                  <input
-                    type="time"
-                    className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-md text-white focus:ring-blue-500 focus:border-blue-500"
-                    value={newEvent.endTime}
-                    onChange={(e) => setNewEvent({...newEvent, endTime: e.target.value})}
-                  />
-                </div>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-200 mb-1">Color</label>
-                <div className="flex space-x-2">
-                  {colorOptions.map((color) => (
-                    <div
-                      key={color}
-                      className={cn(
-                        "h-6 w-6 rounded-full cursor-pointer",
-                        color,
-                        newEvent.color === color && "ring-2 ring-offset-2 ring-blue-500"
-                      )}
-                      onClick={() => setNewEvent({...newEvent, color})}
-                    ></div>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="flex justify-end space-x-2 pt-4">
-                <button
-                  onClick={() => setShowEventModal(false)}
-                  className="bg-gray-700"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={handleAddEvent}
-                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                  Add Event
-                </button>
-              </div>
+     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+         <div className="bg-white text-black rounded-lg shadow-xl p-6 custom-width">
+
+
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-lg font-medium">Add New Appointment</h3>
+        <button 
+             onClick={() => setShowEventModal(false)} 
+              className="text-black border border-black p-1 rounded"
+               >
+              <X className="h-5 w-5" />
+          </button>
+
+      </div>
+
+      <div className="space-y-4">
+        {/* Patient Name */}
+        <div>
+           <label className="block text-sm font-medium text-black mb-1">Patient Name</label>
+             <input
+            type="text"
+            className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-black placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500"
+         placeholder="Enter Name"
+         value={newEvent.title}
+         onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+          />
+       </div>
+
+
+        {/* Doctor Name */}
+        <div>
+        <label className="block text-sm font-medium text-black mb-1">Doctor Name</label>
+           <input
+              type="text"
+               className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-black placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter Doctor Name"
+               value={newEvent.doctorName}
+               onChange={(e) => setNewEvent({ ...newEvent, doctorName: e.target.value })}
+         />
+          </div>
+        <div>
+       <label className="block text-sm font-medium text-black mb-1">Date</label>
+       <input
+            type="date"
+              className="w-full px-3 py-2 bg-gray-100 border border-gray-600 rounded-md text-black focus:ring-blue-500 focus:border-blue-500"
+              value={format(newEvent.date, 'yyyy-MM-dd')}
+               onChange={(e) => setNewEvent({ ...newEvent, date: new Date(e.target.value) })}
+           />
+             </div>
+
+             
+
+        {/* Start  Time */}
+        
+          <div>
+            <label className="block text-sm font-medium text-black mb-1">Start Time</label>   
+            <input
+              type="time"
+              className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-black focus:ring-blue-500 focus:border-blue-500"
+              value={newEvent.startTime}
+              onChange={(e) => setNewEvent({ ...newEvent, startTime: e.target.value })}
+            />
+          </div>
+         
+        
+
+        {/* Time Slot Duration Dropdown */}
+        <div>
+          <label className="block text-sm font-medium text-black mb-1">Time Slot Duration</label>
+          <div className="relative">
+            <select
+              className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-black appearance-none focus:ring-blue-500 focus:border-blue-500"
+              value={newEvent.slotDuration}
+              onChange={(e) => setNewEvent({ ...newEvent, slotDuration: e.target.value })}
+            >
+              <option value="" disabled>Select duration</option>
+              {timeSlotOptions.map((slot) => (
+                <option key={slot} value={slot}>
+                  {slot}
+                </option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-black">
+              <ChevronDown className="h-4 w-4" />
             </div>
           </div>
         </div>
-      )}
+
+        {/* Remarks */}
+        <div>
+          <label className="block text-sm font-medium text-black mb-1">Remarks</label>
+          <input
+            type="text"
+            className="w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-black placeholder-gray-500 focus:ring-blue-500 focus:border-blue-500"
+            placeholder="Enter remarks"
+            value={newEvent.remarks}
+            onChange={(e) => setNewEvent({ ...newEvent, remarks: e.target.value })}
+          />
+        </div>
+
+        {/* Color (optional) */}
+        <div>
+          <label className="block text-sm font-medium text-black mb-1">Color</label>
+          <div className="flex space-x-2">
+            {colorOptions.map((color) => (
+              <div
+                key={color}
+                className={cn(
+                  "h-6 w-6 rounded-full cursor-pointer",
+                  color,
+                  newEvent.color === color && "ring-2 ring-offset-2 ring-blue-500"
+                )}
+                onClick={() => setNewEvent({ ...newEvent, color })}
+              ></div>
+            ))}
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex justify-end space-x-2 pt-4">
+          <button
+            onClick={() => setShowEventModal(false)}
+            className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-800"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleAddEvent}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+   </div>
+   )}
+
+
     </div>
   );
 };
 
-export default CalendarApp;
+export default CalendarApp
