@@ -13,7 +13,12 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
+    // from line 17 to line 21 is added
     "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
 
     /* Linting */
     "strict": true,

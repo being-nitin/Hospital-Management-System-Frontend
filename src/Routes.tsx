@@ -1,14 +1,22 @@
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router";
 
+
 import App from "./App";
 const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const PatientListPage = React.lazy(() => import("./pages/Patients"));
 const AddPatient = React.lazy(() => import("./pages/AddPatient"));
 
+//const CalenderView = React.lazy(() => import("./components/CalenderView"));
+//const Calendar = React.lazy(() => import("./pages/Calendar"));
+const CalendarPage = React.lazy(() => import("./pages/CalendarPage"));
+
+
+
 import { Login } from "./pages/Login";
 import MedicineList from "./pages/Medicines";
 import AddMedicine from "./pages/AddMedicine";
+//cdcdimport CalendarPage from "./pages/CalendarPage";
 const AppRoutes = () => {
 	return (
 		<BrowserRouter>
@@ -54,7 +62,18 @@ const AppRoutes = () => {
 							</Suspense>
 						}
 					/>
+					{ <Route
+                        path="/calendar"
+                           element={
+                         <Suspense fallback="...loading">
+                           <CalendarPage />
+                            </Suspense>
+                        }
+                    /> }
+
 				</Route>
+				
+			
 
 				{/* Auth Routes */}
 				<Route path="/login" element={<Login />} />
