@@ -3,4 +3,4 @@ export interface PatientsDataProps {
 	dateIn: string;
 	symptoms: string;
 	status: string;
-}
+}  
