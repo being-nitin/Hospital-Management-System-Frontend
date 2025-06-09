@@ -17,6 +17,6 @@ export const patientsData: PatientsDataProps[] = [
 		name: "John Doe",
 		dateIn: "Jan 10, 2025",
 		symptoms: "Flu",
-		status: "Cancelled",
+		status: "Cancelled",  
 	},
 ];

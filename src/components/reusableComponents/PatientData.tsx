@@ -23,7 +23,7 @@ const PatientTableHeader = () => {
 					Patient name
 				</TableHead>
 				<TableHead className="text-[#1E1E1E]">Date In</TableHead>
-				<TableHead className="text-[#1E1E1E]">Symptoms</TableHead>
+				<TableHead className="text-[#1E1E1E]">Symptoms</TableHead>   
 				<TableHead className="text-[#1E1E1E]">Status</TableHead>
 				<TableHead className="text-[#1E1E1E]">Action</TableHead>
 			</TableRow>

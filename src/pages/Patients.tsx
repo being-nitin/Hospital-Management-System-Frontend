@@ -150,4 +150,4 @@ const PatientListPage = () => {
 	);
 };
 
-export default PatientListPage;
+export default PatientListPage;  

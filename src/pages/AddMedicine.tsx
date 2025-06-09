@@ -32,7 +32,7 @@ import Pagination from "../components/reusableComponents/Pagination";
 const AddMedicine = () => {
 	const [date, setDate] = useState<Date | undefined>(new Date());
 
-	return (
+	 return (
 		<React.Fragment>
 			<div className="flex w-full justify-between">
 				<Breadcrumb>

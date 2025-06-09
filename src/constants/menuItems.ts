@@ -23,7 +23,7 @@ export const homeMenuItems = [
 ];
 
 export const moduleMenuItems = [
-	{ title: "Appointments", url: "#", icon: ListUsersIcon() },
+	{ title: "Appointments", url: "/Appointments", icon: ListUsersIcon() },
 	{ title: "Patient", url: "/patients", icon: PatientIcon() },
 	{ title: "Medicine", url: "/medicines", icon: MedicineIcon() },
 ];

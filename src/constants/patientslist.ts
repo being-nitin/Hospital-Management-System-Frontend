@@ -21,7 +21,7 @@ export const patientList: Patient[] = [
 		phone: "7428695948",
 		doctor: "John",
 		regDate: "18 Dec, 2024",
-		gender: "male",
+		gender: "male",  
 	},
 	{
 		id: 1,

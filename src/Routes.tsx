@@ -7,9 +7,9 @@ const Dashboard = React.lazy(() => import("./pages/Dashboard"));
 const PatientListPage = React.lazy(() => import("./pages/Patients"));
 const AddPatient = React.lazy(() => import("./pages/AddPatient"));
 
-//const CalenderView = React.lazy(() => import("./components/CalenderView"));
-//const Calendar = React.lazy(() => import("./pages/Calendar"));
+
 const CalendarPage = React.lazy(() => import("./pages/CalendarPage"));
+const Appointments = React.lazy(() => import("./pages/Appointments"));
 
 
 
@@ -70,6 +70,20 @@ const AppRoutes = () => {
                             </Suspense>
                         }
                     /> }
+					<Route
+						path="/Appointments"
+						element={
+							<Suspense fallback="...loading">
+								<Appointments />
+							</Suspense>
+						}
+					/>
+					
+
+
+
+
+
 
 				</Route>
 				
